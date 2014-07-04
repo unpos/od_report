@@ -26,7 +26,7 @@ module OdReport
   class Report
     def initialize(template_name, &block)
       if File.extname(template_name) == '.odt'
-        OdReport::ODT::Report.new(template_name, block)
+        OdReport::ODF::Report.new(template_name, block)
       elsif File.extname(template_name) == '.ods'
         OdReport::ODS::Report.new(template_name, block)
       else
