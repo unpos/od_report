@@ -77,11 +77,11 @@ module OdReport::ODS
         row = row.gsub("\n", " ")
         if row.match(/\[%=([^%]+)%\]/) # <%= %>
           replaced_row = row.gsub(/\[%=([^%]+)%\]/m, '\' + (\1).to_s + \'')
-          block_code += "fragment_doc += '" + replaced_row + "'\n"
+          block_code += "fragment_doc << '" + replaced_row + "'\n"
         elsif row.match(/\[%([^%]+)%\]/) # <% %>
           block_code += row.match(/\[%([^%]+)%\]/)[1] + "\n"
         else # str
-          block_code += "fragment_doc += '#{row}' \n"
+          block_code += "fragment_doc << '#{row}' \n"
         end
       end
       block_code += "fragment_doc \n"
