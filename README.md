@@ -6,7 +6,7 @@ h2. INSTALL
 
 Add to Gemfile
 <pre>
-  gem 'odf-ods-report'
+  gem "od_report", git: "https://github.com/madding/od_report"
 </pre>
 
 h2. USAGE ODF
@@ -27,10 +27,8 @@ In the folowing example:
 
 <pre>
 report = ODFReport::Report.new("Users/john/my_template.odt") do |r|
-
   r.add_field :user_name, @user.name
   r.add_field :address, "My new address"
-
 end
 </pre>
 
