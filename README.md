@@ -1,4 +1,4 @@
-h1. ODF-ODS-REPORT
+h1. OD REPORT
 
 Gem for generating .odt(.ods) files by making strings, images, tables and sections replacements in a previously created .odt(.ods) file.
 
@@ -26,7 +26,7 @@ It's just an upcase sentence, surrounded by brackets. It will be replaced for wa
 In the folowing example:
 
 <pre>
-report = ODFReport::Report.new("Users/john/my_template.odt") do |r|
+report = OdReport::ODF::Report.new("Users/john/my_template.odt") do |r|
   r.add_field :user_name, @user.name
   r.add_field :address, "My new address"
 end
@@ -48,7 +48,7 @@ As with Field placeholders, just insert a @[FIELD_NAME]@ in each cell and let th
 Taking the folowing example:
 
 <pre>
-report = ODFReport::Report.new("Users/john/my_template.odt") do |r|
+report = OdReport::ODF::Report.new("Users/john/my_template.odt") do |r|
 
   r.add_field "USER_NAME", @user.nome
   r.add_field "ADDRESS", @user.address
@@ -87,7 +87,7 @@ You can also assign any properties you want to the mock image and they will be k
 An image replace would look like this:
 
 <pre>
-report = ODFReport::Report.new("Users/john/my_template.odt") do |r|
+report = OdReport::ODF::Report.new("Users/john/my_template.odt") do |r|
 
   r.add_image :graphics1, "/path/to/the/image.jpg"
 
@@ -107,7 +107,7 @@ Let's see an example:
 
   @invoices = Invoice.find(:all)
 
-  report = ODFReport::Report.new("reports/invoice.odt") do |r|
+  report = OdReport::ODF::Report.new("reports/invoice.odt") do |r|
 
     r.add_field(:title, "INVOICES REPORT")
     r.add_field(:date, Date.today)
@@ -165,7 +165,7 @@ def print
   @ticket = Ticket.find(params[:id])
 
   # For Rails 3 or latest replace #{RAILS_ROOT} to #{Rails.root}
-  report = ODFReport::Report.new("#{RAILS_ROOT}/app/reports/ticket.odt") do |r|
+  report = OdReport::ODF::Report.new("#{RAILS_ROOT}/app/reports/ticket.odt") do |r|
 
     r.add_field(:id,         @ticket.id.to_s)
     r.add_field(:created_by, @ticket.created_by)
@@ -219,7 +219,7 @@ h4. Template
 
 For only replace set in documents in cells variables [VARIABLE_NAME]. And in code:
 <pre>
-  report = ODSReport::Report.new("reports/invoice.ods") do |r|
+  report = OdReport::ODS::Report.new("reports/invoice.ods") do |r|
     r.add_field(:organization, organization_name)
     r.add_field(:department, department_name)
     r.add_field(:doc_num, invoice.number)
