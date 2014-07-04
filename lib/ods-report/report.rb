@@ -1,12 +1,12 @@
 module OdReport::ODS
   class Report
-    include Fields
+    include OdReport::Fields
 
     attr_accessor :fields, :tables, :file, :texts
 
     def initialize(template_name, &block)
 
-      @file = ::Parser::File.new(template_name)
+      @file = OdReport::File.new(template_name)
 
       @texts = []
       @fields = []
@@ -17,7 +17,7 @@ module OdReport::ODS
 
     def add_field(field_tag, value='', &block)
       opts = {:name => field_tag, :value => value}
-      field = Field.new(opts, &block)
+      field = OdReport::Field.new(opts, &block)
       @fields << field
     end
 

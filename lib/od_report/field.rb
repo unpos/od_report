@@ -1,4 +1,4 @@
-module OdReport::ODS
+module OdReport
   class Field
     attr_accessor :name
 

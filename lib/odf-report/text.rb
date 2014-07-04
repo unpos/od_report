@@ -1,6 +1,6 @@
 module OdReport::ODF
 
-  class Text < Field
+  class Text < OdReport::Field
     attr_accessor :parser
 
     def replace!(doc, data_item = nil)

@@ -1,7 +1,7 @@
 module OdReport::ODF
 
 class Table
-  include Fields, Nested
+  include OdReport::Fields, OdReport::Nested
 
   attr_accessor :fields, :rows, :name, :collection_field, :data, :header, :parent, :tables
 

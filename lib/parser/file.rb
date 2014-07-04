@@ -1,4 +1,4 @@
-module Parser
+module OdReport
   class File
 
     attr_accessor :tmp_dir, :path
