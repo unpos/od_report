@@ -1,9 +1,20 @@
 module OdReport::ODS
   class Table
-    attr_accessor :records, :options, :tables
+    attr_accessor :options, :tables
 
     def initialize(opts)
-      @records          = opts[:collection]
+      if opts[:collection].is_a?(Hash)
+        @records = create_records_from_hash(opts[:collection])
+      else
+        @records = opts[:collection]
+      end
+
+      instance_variable_set("@#{opts[:name]}", @records)
+      if defined?(opts[:name])
+        self.class.send(:attr_reader, opts[:name])
+      else
+        raise "Invalid collection name: #{opts[:name]}"
+      end
 
       @tables  = []
       @options = {}
@@ -19,12 +30,12 @@ module OdReport::ODS
       @options[name] = data
     end
 
-    def add_table(table_name, collection_field, opts={}, &block)
+    def add_table(table_name, collection_field, opts={})
       opts.merge!(:name => table_name)
       tab = Table.new(opts)
       @tables << tab
 
-      yield(tab)
+      yield(tab) if block_given?
     end
 
     def replace!(doc, row = nil)
@@ -107,6 +118,10 @@ module OdReport::ODS
       else
         false
       end
+    end
+
+    def create_records_from_hash(hash)
+      OdReport.create_records_from_array(hash[:column_names], hash[:data])
     end
   end
 end

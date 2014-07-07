@@ -27,12 +27,12 @@ module OdReport::ODS
       @texts << text
     end
 
-    def add_table(table_name, collection, opts={}, &block)
+    def add_table(table_name, collection, opts={})
       opts.merge!(:name => table_name, :collection => collection)
       tab = Table.new(opts)
       @tables << tab
 
-      yield(tab)
+      yield(tab) if block_given?
     end
 
     def generate(dest = nil, &block)
