@@ -21,7 +21,7 @@ class Table
 
   def add_column(name, data_field=nil, &block)
     opts = {:name => name, :data_field => data_field}
-    field = Field.new(opts, &block)
+    field = OdReport::Field.new(opts, &block)
     @fields << field
 
   end

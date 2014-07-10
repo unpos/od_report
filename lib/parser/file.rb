@@ -37,9 +37,9 @@ module OdReport
     private
 
     def update_content_file(content_file, &block)
-      Zip::ZipFile.open(@path) do |z|
+      Zip::File.open(@path) do |zip_file|
         cont = "#{@tmp_dir}/#{content_file}"
-        z.extract(content_file, cont)
+        zip_file.extract(content_file, cont)
         txt = ''
 
         ::File.open(cont, "r") do |f|
@@ -52,7 +52,7 @@ module OdReport
            f.write(txt)
         end
 
-        z.replace(content_file, cont)
+        zip_file.replace(content_file, cont)
       end
     end
 
