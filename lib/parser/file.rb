@@ -14,7 +14,6 @@ module OdReport
 
     def create(dest)
       if dest
-        dest = dest.gsub('/', '_').gsub(' ', '')
         FileUtils.cp(@template, dest)
         @path = dest
       else
