@@ -63,6 +63,8 @@ module OdReport::ODS
       doc = Nokogiri::XML(txt)
       yield doc
       txt.replace(doc.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::AS_XML))
+      txt.gsub!(/<([\/]*)(table:p)>/, '<\1text:p>') # fix bug in create document fragment in nokogiri
+      txt
     end
 
     def replace_fields!(content)
