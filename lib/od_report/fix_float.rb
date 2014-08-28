@@ -1,6 +1,6 @@
 module FixFloat
   DELIMITED_REGEX = /(\d)(?=(\d\d\d)+(?!\d))/
-  DELIMETER = ''
+  DELIMETER = ' '
 
   refine Float do
     def to_s
