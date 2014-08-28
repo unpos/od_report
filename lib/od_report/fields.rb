@@ -1,5 +1,6 @@
 module OdReport
   module Fields
+    using FixFloat
     HTML_ESCAPE = { '&' => '&amp;',  '>' => '&gt;',   '<' => '&lt;', '"' => '&quot;' }
 
     def field_replace!(_node, data_item = nil)

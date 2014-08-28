@@ -1,5 +1,6 @@
 module OdReport::ODS
   class Table
+    using FixFloat
     attr_accessor :options, :tables
 
     def initialize(opts)
