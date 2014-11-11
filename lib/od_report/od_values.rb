@@ -38,7 +38,7 @@ module OdValues
 
     def break_apart
       left, right = round(2).to_s.split('.')
-      [left, right == '0' ? nil : right]
+      [left, right == '0' ? nil : right.ljust(2, '0')]
     end
   end
 
