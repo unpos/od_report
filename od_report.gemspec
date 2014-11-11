@@ -6,7 +6,7 @@ require 'od_report/version'
 Gem::Specification.new do |spec|
   spec.name          = "od_report"
   spec.version       = OdReport::VERSION
-  spec.authors       = ["Eugene Gavrilov"]
+  spec.authors       = ["Eugene Gavrilov", "Nikolay Norkin"]
   spec.email         = ["gavrilov.ea@gmail.com"]
   spec.summary       = %q{Generates ODF(ODS) files, given a template (.odt, .ods) and data, replacing tags}
   spec.description   = %q{Generates ODF(ODS) files, given a template (.odt, .ods) and data, replacing tags}
