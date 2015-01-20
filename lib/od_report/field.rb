@@ -38,7 +38,7 @@ module OdReport
 
       if data_item.is_a?(Hash)
         data_item[key] || data_item[key.to_s.downcase] ||
-        data_item[key.to_s.upcase] || data_item[key.to_s.downcase.to_sym]
+          data_item[key.to_s.upcase] || data_item[key.to_s.downcase.to_sym]
       elsif data_item.respond_to?(key.to_s.downcase.to_sym)
         data_item.send(key.to_s.downcase.to_sym)
       else
@@ -49,8 +49,8 @@ module OdReport
     def write_to_ods_cell(cell, data_item = nil)
       val = get_value(data_item)
       cell["office:#{val.value_attribute_name}"] = val.od_value
-      cell["office:value-type"] = val.od_type
-      cell.xpath("text:p").each { |t| t.content = val.od_s }
+      cell['office:value-type'] = val.od_type
+      cell.xpath('text:p').each { |t| t.content = val.od_s(false) }
     end
   end
 end
