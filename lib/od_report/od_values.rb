@@ -47,8 +47,12 @@ module OdValues
       escape_value
     end
 
-    def od_s
-      escape_value
+    def od_s(escape_html = true)
+      if escape_html
+        escape_value
+      else
+        to_s
+      end
     end
 
     def od_type
