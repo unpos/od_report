@@ -50,7 +50,8 @@ module OdReport
       val = get_value(data_item)
       cell["office:#{val.value_attribute_name}"] = val.od_value
       cell['office:value-type'] = val.od_type
-      cell.xpath('text:p').each { |t| t.content = val.od_s(false) }
+      content = (val.od_type == 'string') ? val.od_s(false) : val.od_s
+      cell.xpath('text:p').each { |t| t.content = content }
     end
   end
 end
