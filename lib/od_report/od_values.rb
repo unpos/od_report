@@ -3,7 +3,7 @@ module OdValues
 
   refine Date do
     def od_value
-      strftime("%Y-%m-%dT%H:%M:%S")
+      strftime('%Y-%m-%dT%H:%M:%S')
     end
 
     def od_type
@@ -15,7 +15,7 @@ module OdValues
     end
 
     def od_s
-      strftime("%Y.%m.%d")
+      strftime('%Y.%m.%d')
     end
   end
 
