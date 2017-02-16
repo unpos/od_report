@@ -99,7 +99,7 @@ module OdReport::ODS
       block.each do |_, row|
         row_text = row.to_xml.tr("\n", ' ')
         if row_text.match(OdReport::ODS::RegExps::VALUE) # <%= %>
-          block_code << "fragment_doc << '#{gsub_cells(row)}'\n"
+          block_code << "fragment_doc << '#{gsub_cells(row.dup)}'\n"
         elsif row_text.match(OdReport::ODS::RegExps::BLOCK) # <% %>
           code = row_text.match(OdReport::ODS::RegExps::BLOCK)[1]
           skip_block = check_table(code) if opened_operand?(code)
