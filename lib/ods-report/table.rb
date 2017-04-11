@@ -96,13 +96,15 @@ module OdReport::ODS
       skip_block = false
       fragment_doc = ''
       block_code = ''
+      table_opened = false
       block.each do |_, row|
         row_text = row.to_xml.tr("\n", ' ')
         if row_text.match(OdReport::ODS::RegExps::VALUE) # <%= %>
           block_code << "fragment_doc << '#{gsub_cells(row.dup)}'\n"
         elsif row_text.match(OdReport::ODS::RegExps::BLOCK) # <% %>
           code = row_text.match(OdReport::ODS::RegExps::BLOCK)[1]
-          skip_block = check_table(code) if opened_operand?(code)
+          skip_block = check_table(code) if opened_operand?(code) && !table_opened
+          table_opened = true
           block_code << code + "\n"
         else # str
           block_code << "fragment_doc << '#{row_text}'\n"
