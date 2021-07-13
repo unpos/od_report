@@ -53,6 +53,9 @@ class Report
   end
 
   def generate(dest = nil, &block)
+    fail "No destination specified" unless dest
+
+    FileUtils.mkdir_p File.dirname dest
 
     @file.create(dest)
 
